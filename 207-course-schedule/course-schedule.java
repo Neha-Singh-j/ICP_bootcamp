@@ -8,12 +8,13 @@ class Solution {
         for(int i=0;i<prerequisites.length;i++){
             AddEdge(prerequisites[i][0],prerequisites[i][1]);
         }
-        return !isCycle();
-
+        return isCycle();
     }
+
     public  void AddEdge(int v1,int v2){
         map.get(v1).add(v2);
     }
+
     public  int[] indegree(){
         int[] in=new int[map.size()];
         for(int c: map.keySet()){
@@ -40,6 +41,6 @@ class Solution {
                 }
             }
         }
-        return c!=map.size();
+        return c==map.size(); //all courses get completed no cycle is there
     }
 }
