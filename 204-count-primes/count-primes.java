@@ -3,9 +3,21 @@ class Solution {
         if(n<=2) return 0;
         int[] ans=new int[n];
         ans[0]=ans[1]=1; //not prime
-        for(int i=2;i*i<n;i++){
+        for(int i=2;i*i<n;i++){ 
             if(ans[i]==0){ //check is it composite
-                for(int j=2;i*j<n;j++){
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                for(int j=2;j*i<n;j++){
                     ans[i*j]=1;
                 }
             }
