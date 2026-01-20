@@ -1,30 +1,25 @@
 class Solution {
     public int[] nextGreaterElement(int[] nums1, int[] nums2) {
-        
-        int ans2[]=new int[nums1.length];
-       return nextGreater(nums1,ans2,nums2);
-    }
-    private static int[] nextGreater(int[] nums1,int[] ans2,int[] nums2){
+        int ans[]= new int[10001];
+        //we are maintianing answers ( next greater elements) in this array
+        // after that we eill retrieve them in constant time for main answer
         Stack<Integer> st=new Stack<>();
-        int ans[] =new int[nums2.length];
         for(int i=nums2.length-1;i>=0;i--){
-            while(!st.isEmpty() && nums2[i]>=nums2[st.peek()]){
+            while(!st.isEmpty() && nums2[i]>=st.peek()){
                 st.pop();
             }
+            //if stack is empty then no next greter element for that particular value exist 
             if(st.isEmpty()){
-                ans[i]=-1;
+                ans[nums2[i]]= -1; //put -1 at that index so it can be accisible for nums 1
             }else{
-                ans[i]=nums2[st.peek()];
+                ans[nums2[i]]=st.peek();
             }
-            st.add(i);
+            st.push(nums2[i]);
         }
-        for(int i=0;i<nums1.length;i++){
-            for(int j=0;j<nums2.length;j++){
-                if(nums1[i]==nums2[j]){
-                    ans2[i]=ans[j];
-                }
-            }
+        int n=nums1.length;
+        for(int i=0;i<n;i++){
+            nums1[i]=ans[nums1[i]]; // in constnat time accesing value at that index 
         }
-        return ans2;
+        return nums1;
     }
 }
